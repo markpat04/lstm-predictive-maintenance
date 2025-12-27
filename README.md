@@ -69,18 +69,3 @@ $$f_t = \sigma(W_f \cdot [h_{t-1}, x_t] + b_f)$$
 The final dense layer converts the network's raw logits into a probability distribution over the 4 classes ($K=4$).
 
 $$P(y=j|x) = \frac{e^{z_j}}{\sum_{k=1}^K e^{z_k}}$$
-
----
-
-## 🏗 System Architecture
-
-The pipeline processes raw time-series sensor data through normalization and reshaping before feeding it into the LSTM network.
-
-```mermaid
-graph LR
-    A[Raw Vibration Data] --> B[Standard Scaler]
-    B --> C[3D Reshape<br/>(N, Time, Feat)]
-    C --> D[LSTM Layer<br/>(32 Units)]
-    D --> E[Dropout<br/>(0.3)]
-    E --> F[Softmax Output]
-```
